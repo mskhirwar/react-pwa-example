@@ -2,21 +2,71 @@
  * index.js
  */
 
-import { add, subtract } from './module';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { render } from 'react-dom';
 
-import styles from './styles.css';
+// logo icon path - https://www.flaticon.com/free-icon/think_1373027
+import logo from './logo.svg';
+import './styles.css';
 
-if (module.hot) {
-  module.hot.accept();
-}
+const Page = ({ title }) => (
+  <div className="App">
+    <div className="App-header">
+      <img src={logo} className="App-logo" alt="logo" />
+      <h2>{title}</h2>
+    </div>
+    <p className="App-intro">
+      {`This is the ${title} page.`}
+    </p>
+    <p>
+      <Link to="/">Home</Link>
+    </p>
+    <p>
+      <Link to="/about">About</Link>
+    </p>
+    <p>
+      <Link to="/settings">Settings</Link>
+    </p>
+  </div>
+);
 
-const resultA = add(2, 3);
-const resultB = subtract(5, 1);
+Page.defaultProps = {
+  title: '',
+};
 
-console.log(`resultA --- ${resultA}`);
-console.log(`resultB --- ${resultB}`);
+Page.propTypes = {
+  title: PropTypes.string,
+};
 
-console.log(process.env.APP_NAME);
+const Home = () => (
+  <Page title="Home" />
+);
 
-console.log(styles.localClass); // _19OBmKu4X8SmIISJiYXz8U
-console.log(styles.globalClass); // undefined
+const About = () => (
+  <Page title="About" />
+);
+
+const Settings = () => (
+  <Page title="Settings" />
+);
+
+const App = () => (
+  <Router>
+    <Route path="/" component={Home} />
+    <Route path="/about" component={About} />
+    <Route path="/settings" component={Settings} />
+  </Router>
+);
+
+// const MainApp = () => (
+//   <h1>React.js Progressive Web App</h1>
+// );
+
+// render app
+render(<App />, document.getElementById('app'));

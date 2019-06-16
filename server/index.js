@@ -2,16 +2,16 @@
  * Module dependencies
  */
 
-// import http from 'http';
-import path from 'path';
-import fs from 'fs';
-import https from 'https';
+import http from 'http';
+// import path from 'path';
+// import fs from 'fs';
+// import https from 'https';
 import app from '../app';
 
-const privateKey = fs.readFileSync(path.join(__dirname, 'sslcert/development.key'), 'utf8');
-const certificate = fs.readFileSync(path.join(__dirname, 'sslcert/development.crt'), 'utf8');
+// const privateKey = fs.readFileSync(path.join(__dirname, 'sslcert/development.key'), 'utf8');
+// const certificate = fs.readFileSync(path.join(__dirname, 'sslcert/development.crt'), 'utf8');
 
-const credentials = { key: privateKey, cert: certificate };
+// const credentials = { key: privateKey, cert: certificate };
 // Simple logger function
 const log = (message) => {
   process.stdout.write(`${message}\n`);
@@ -39,7 +39,7 @@ const port = normalizePot(process.env.PORT || 3000);
 app.set('port', port);
 
 // Create HTTP server
-const server = https.createServer(credentials, app);
+const server = http.createServer(app);
 let availablePort = port;
 
 // Listen on provide port, on all network interfaces
@@ -87,7 +87,7 @@ const onListening = () => {
   }`;
 
   log(`Server is listening on ${bind}`);
-  log(`Visit: https://localhost:${addr.port}`);
+  log(`Visit: http://localhost:${addr.port}`);
 };
 
 // Start server
