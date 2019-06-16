@@ -4,6 +4,7 @@
   "description": "Example Progressive Web App using React Create App",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon --exec babel-node ./server/index.js",
     "dev": "nodemon --exec babel-node ./server/index.js",
     "build": "NODE_ENV=production npx webpack --config ./webpack/production/config.babel.js",
     "postinstall": "npm run build",
