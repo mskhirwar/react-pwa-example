@@ -4,18 +4,29 @@
 
 import path from 'path';
 import webpack from 'webpack';
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 
 export default {
+  mode: 'production',
   devtool: 'source-map',
   entry: path.join(process.cwd(), 'src/index'),
   output: {
     filename: 'bundle.js',
     path: path.join(process.cwd(), 'public', 'js'),
     publicPath: '/js',
+    sourceMapFilename: 'bundle.js.map',
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(true),
-    new webpack.optimize.UglifyJsPlugin(),
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        warnings: false,
+        ie8: false,
+        output: {
+          comments: false,
+        },
+      },
+    }),
   ],
   module: {
     rules: [
