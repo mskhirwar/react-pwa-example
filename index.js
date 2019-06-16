@@ -3,8 +3,8 @@
  */
 
 const logSomething = options => ({
-    ...options,
-    anotherOption: 'Hello!'
+  ...options,
+  anotherOption: 'Hello!',
 });
 
 const options = logSomething({ one: '1', two: '2' });
