@@ -1,0 +1,19 @@
+{
+  "name": "react-pwa-example",
+  "version": "1.0.0",
+  "description": "Example Progressive Web App using React Create App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mskhirwar/react-pwa-example.git"
+  },
+  "author": "Manmohan Singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mskhirwar/react-pwa-example/issues"
+  },
+  "homepage": "https://github.com/mskhirwar/react-pwa-example#readme"
+}
