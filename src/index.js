@@ -12,13 +12,13 @@ import PropTypes from 'prop-types';
 import { render } from 'react-dom';
 
 // logo icon path - https://www.flaticon.com/free-icon/think_1373027
-import logo from './logo.svg';
+import logo from './logo.png';
 import './styles.css';
 
 const Page = ({ title }) => (
   <div className="App">
     <div className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
+      <img src={logo} className="App-logo" alt="logo" width="200px" height="200px" />
       <h2>{title}</h2>
     </div>
     <p className="App-intro">
