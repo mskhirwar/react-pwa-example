@@ -19,7 +19,7 @@ self.addEventListener("activate", event => {
       .then(keyList =>
         Promise.all(keyList.map(key => {
           if (!cacheWhitelist.includes(key)) {
-            console.log('Deleting cache: ' + key)
+            console.log('[Service Worker] deleting cache: ' + key)
             return caches.delete(key);
           }
         }))
@@ -50,4 +50,34 @@ self.addEventListener('fetch', function(event) {
           })
       );
     }
+});
+
+
+// Push notification handler
+self.addEventListener('push', function(event) {
+
+  const pushMessage = event.data.text();
+  console.log('[Service Worker] Push Received.');
+  console.log(`[Service Worker] Push had this data: "${pushMessage}"`);
+
+  const title = 'React PWA Example';
+  const options = {
+    body: pushMessage,
+    icon: 'public/icon-192x192.png',
+    badge: 'public/icon-192x192.png'
+  };
+
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+
+// Push notifications dlick event handler
+self.addEventListener('notificationclick', function(event) {
+  console.log('[Service Worker] Notification click Received.');
+
+  event.notification.close();
+
+  event.waitUntil(
+    clients.openWindow('https://react-pwa-example.herokuapp.com/')
+  );
 });
