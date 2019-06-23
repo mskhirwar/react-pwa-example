@@ -71,7 +71,7 @@ self.addEventListener('push', function(event) {
 });
 
 
-// Push notifications dlick event handler
+// Push notifications click event handler
 self.addEventListener('notificationclick', function(event) {
   console.log('[Service Worker] Notification click Received.');
 

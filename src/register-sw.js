@@ -1,4 +1,5 @@
 
+// Grabbed Sample API key from https://web-push-codelab.glitch.me/
 const applicationServerPublicKey = 'BEyyOdTG7KT_o90Gsl1HteXPsU8JvvrvO4iKLfX5y6_FdQipIWrZ8Vfb41t47dgYq7xvFodIzImsBKuEfbEeb7c';
 
 let isSubscribed = false;
@@ -67,19 +68,24 @@ const initPushNotifications = () => {
         console.log('[Push Messaging] user is subscribed.');
       } else {
         console.log('[Push Messaging] user is not subscribed.');
-        subscribeUser(swRegistration);
+        subscribeUser();
       }
     });
 };
 
 // Initiate Service Worker
-if ('serviceWorker' in navigator && 'PushManager' in window) {
+if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('service-worker.js').then((swReg) => {
       // Registration was successful
       console.log('[Service Worker] registration successful with scope: ', swReg);
       swRegistration = swReg;
-      initPushNotifications();
+
+      if ('PushManager' in window) {
+        initPushNotifications();
+      } else {
+        console.log('[Push Messaging] not supported');
+      }
     }, (err) => {
       // registration failed :(
       console.log('[Service Worker] registration failed: ', err);
@@ -89,5 +95,4 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
   });
 } else {
   console.log('[Service Worker] not supported');
-  console.log('[Push Messaging] not supported');
 }
