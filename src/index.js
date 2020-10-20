@@ -4,6 +4,7 @@
 
 import React from 'react';
 import {
+  Switch,
   BrowserRouter as Router,
   Route,
   Link,
@@ -58,9 +59,17 @@ const Settings = () => (
 
 const App = () => (
   <Router>
-    <Route path="/" component={Home} />
-    <Route path="/about" component={About} />
-    <Route path="/settings" component={Settings} />
+    <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route path="/about">
+        <About />
+      </Route>
+      <Route path="/settings">
+        <Settings />
+      </Route>
+    </Switch>
   </Router>
 );
 
