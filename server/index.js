@@ -23,7 +23,7 @@ const normalizePort = (val) => {
 
   if (Number.isNaN(port)) {
     // named pipe
-    console.log(val)
+    // console.log(val);
     return val;
   }
 
