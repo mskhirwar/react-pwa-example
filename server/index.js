@@ -18,11 +18,12 @@ const log = (message) => {
 };
 
 // Normalize a port into a number, string or false
-const normalizePot = (val) => {
+const normalizePort = (val) => {
   const port = parseInt(val, 10);
 
   if (Number.isNaN(port)) {
     // named pipe
+    console.log(val)
     return val;
   }
 
@@ -35,7 +36,7 @@ const normalizePot = (val) => {
 };
 
 // Get port from environment and store in express
-const port = normalizePot(process.env.PORT || 3000);
+const port = normalizePort(process.env.PORT || 3000);
 app.set('port', port);
 
 // Create HTTP server
