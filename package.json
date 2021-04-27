@@ -36,7 +36,7 @@
     "body-parser": "^1.19.0",
     "braces": "^2.3.2",
     "cookie-parser": "^1.4.4",
-    "css-loader": "^3.0.0",
+    "css-loader": "^5.0.0",
     "dotenv": "^8.0.0",
     "env-cmd": "^9.0.3",
     "express": "^4.17.1",
